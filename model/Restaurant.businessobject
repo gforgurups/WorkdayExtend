@@ -1,0 +1,44 @@
+{
+  "id": 1,
+  "name": "Restaurant",
+  "label": "Restaurant",
+  "defaultSecurityDomains": [
+    "MealOrder"
+  ],
+  "defaultCollection": {
+    "name": "restaurants",
+    "label": "Restaurants"
+  },
+  "fields": [
+    {
+      "id": 1,
+      "name": "name",
+      "type": "TEXT",
+      "description": "Name of the restaurant",
+      "isReferenceId": true,
+      "useForDisplay": true,
+      "isPurgeable": false,
+      "enableIndex": true,
+      "enableSearch": true
+    },
+    {
+      "id": 2,
+      "name": "type",
+      "type": "TEXT",
+      "description": "Type of Restaurant",
+      "isReferenceId": false,
+      "useForDisplay": false,
+      "isPurgeable": false,
+      "enableIndex": false,
+      "enableSearch": false
+    },
+    {
+      "id": 3,
+      "name": "active",
+      "type": "BOOLEAN",
+      "description": "Is it active?",
+      "isPurgeable": false,
+      "enableIndex": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+var getCurrentTime = function() {
+  return date:getTodaysDate(date:getDateTimeZone('US/Pacific'));
+};
+
+{
+  "getCurrentTime": getCurrentTime
+}
+
+var isOverMaxChar = function(textWidgetValue) {
+  let textSize = textWidgetValue.length();
+
+  textSize > 25;
+};
+
+var isWeekday = function(dateWidgetValue) {
+  let day = dateWidgetValue.format('E');
+
+  day != 'Sat' && day != 'Sun';
+};
+
+{
+  "isOverMaxChar": isOverMaxChar,
+  "isWeekday": isWeekday
+}

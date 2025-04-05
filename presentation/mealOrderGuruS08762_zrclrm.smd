@@ -1,0 +1,53 @@
+{
+  "id": "mealOrderGuruS08762_zrclrm",
+  "languages": [
+    {
+      "code": "en-US",
+      "description": "English"
+    }
+  ],
+  "siteAuth": {
+    "authTypes": [
+      {
+        "scheme": "SSO",
+        "id": "sso"
+      }
+    ]
+  },
+  "siteId": "mealOrderGuruS08762_zrclrm",
+  "errorPageConfigurations": [
+    {
+      "statusCode": "400",
+      "page": {
+        "id": "badRequestError"
+      }
+    },
+    {
+      "statusCode": "401",
+      "page": {
+        "id": "authError"
+      }
+    },
+    {
+      "statusCode": "404",
+      "page": {
+        "id": "notFoundError"
+      }
+    },
+    {
+      "statusCode": "500",
+      "page": {
+        "id": "internalServerError"
+      }
+    },
+    {
+      "statusCode": "503",
+      "page": {
+        "id": "serviceUnavailableError"
+      }
+    }
+  ],
+  "cdnEnabled": true,
+  "siteProperties": [ ],
+  "applicationId": "mealOrderGuruS08762_zrclrm"
+}

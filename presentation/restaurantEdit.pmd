@@ -1,0 +1,70 @@
+{
+  "id": "restaurantEdit",
+  "endPoints": [
+    {
+      "name": "getRestaurant",
+      "baseUrlType": "BUSINESS-OBJECT",
+      "url": "<% `/restaurants/{{queryParams.restaurantId}}` %>",
+      "authType": "sso"
+    }
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "name": "patchRestaurant",
+        "baseUrlType": "BUSINESS-OBJECT",
+        "url": "<% `/restaurants/{{queryParams.restaurantId}}` %>",
+        "authType": "sso",
+        "httpMethod": "PATCH",
+        "onSend": "<%
+          {
+            'name': nameWidget.value,
+            'type': typeWidget.value,
+            'active': activeWidget.value
+          }
+        %>"
+      }
+    ]
+  },
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "<% getRestaurant.name %>"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "label": "Name",
+          "required": true,
+          "id": "nameWidget",
+          "value": "<% getRestaurant.name %>"
+        },
+        {
+          "type": "text",
+          "label": "Type",
+          "id": "typeWidget",
+          "value": "<% getRestaurant.type %>"
+        },
+        {
+          "type": "checkBox",
+          "label": "Active",
+          "id": "activeWidget",
+          "value": "<% getRestaurant.active %>"
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

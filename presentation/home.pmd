@@ -1,0 +1,72 @@
+{
+  "id": "home",
+  "endPoints": [ ],
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "Meal Order"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "button",
+          "action": "PRIMARY",
+          "label": "Create a Restaurant",
+          "taskReference": {
+            "taskId": "restaurantCreate"
+          }
+        },
+        {
+          "type": "button",
+          "action": "PRIMARY",
+          "label": "Manage Restaurants",
+          "taskReference": {
+            "taskId": "restaurantManage"
+          }
+        },
+        {
+          "type": "button",
+          "action": "PRIMARY",
+          "label": "Place an Order",
+          "taskReference": {
+            "taskId": "restaurantOrderCreate"
+          }
+        },
+        {
+          "type": "button",
+          "action": "PRIMARY",
+          "label": "View All Restaurant Orders",
+          "taskReference": {
+            "taskId": "restaurantOrderManage"
+          }
+        },
+        {
+          "type": "button",
+          "action": "PRIMARY",
+          "label": "Restaurant of the Month",
+          "taskReference": {
+            "taskId": "restaurantOfTheMonth"
+          }
+        },
+        {
+          "type": "externalLink",
+          "_label": "View Restaurant Orders",
+          "descriptor": "View Restaurant Orders",
+          "url": "<% '/' + tenant + '/d/task/3005$2000002.htmld'%>"
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

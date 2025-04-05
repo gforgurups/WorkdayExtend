@@ -1,0 +1,90 @@
+{
+  "id": "restaurantOrderCreateForWorker",
+  "include": [
+    "customValidations.script"
+  ],
+  "endPoints": [
+    {
+      "name": "getWorkers",
+      "baseUrlType": "COMMON",
+      "url": "/workers",
+      "authType": "sso"
+    },
+    {
+      "name": "getRestaurants",
+      "baseUrlType": "BUSINESS-OBJECT",
+      "url": "/restaurants",
+      "authType": "sso",
+      "isCollection": true
+    }
+  ],
+  "outboundData": {
+    "responseErrorDetail": {
+      "errorSummary": "<% error %>",
+      "errors": "<% errors.map(item => { item.error }) %>"
+    },
+    "outboundEndPoints": [
+      {
+        "name": "postRestaurantOrder",
+        "baseUrlType": "BUSINESS-OBJECT",
+        "url": "/restaurantOrders",
+        "authType": "sso",
+        "httpMethod": "POST",
+        "onSend": "<%
+          {
+            'restaurant': {
+              'id': restaurantsWidget.value[0]
+            },
+            'createdBy': {
+              'id': workersWidget.value[0]
+            },
+            'orderDetails': orderDetailsWidget.value,
+            'orderAddress': orderAddressWidget.value,
+            'deliveryDate': deliveryDateWidget.value.format('yyyy-MM-dd')
+          }
+        %>",
+        "failOnStatusCodes": [
+          {
+            "code": 400
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Create an Order"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "instanceList",
+          "id": "workersWidget",
+          "label": "Who is this order for?",
+          "values": "<% getWorkers.data %>"
+        },
+        {
+          "type": "pod",
+          "podId": "restaurantOrder",
+          "parameters": {
+            "restaurantsList": "<% getRestaurants %>"
+          }
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

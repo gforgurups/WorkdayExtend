@@ -1,0 +1,220 @@
+{
+  "appProperties": [ ],
+  "flowDefinitions": [
+    {
+      "id": "restaurantCreateFlow",
+      "flowSteps": [
+        {
+          "id": "restaurantCreateStep",
+          "transitions": [
+            {
+              "order": "a",
+              "value": "restaurantCreateConfirmStep",
+              "condition": "true"
+            }
+          ],
+          "startsFlow": true,
+          "taskId": "restaurantCreate"
+        },
+        {
+          "id": "restaurantCreateConfirmStep",
+          "transitions": [
+            {
+              "order": "a",
+              "value": "restaurantCreateSuccessStep",
+              "condition": "true"
+            }
+          ],
+          "taskId": "restaurantCreateConfirm"
+        },
+        {
+          "id": "restaurantCreateSuccessStep",
+          "endsFlow": true,
+          "taskId": "restaurantCreateSuccess"
+        }
+      ]
+    },
+    {
+      "id": "restaurantOrderCreateFlow",
+      "flowSteps": [
+        {
+          "id": "restaurantOrderCreateStep",
+          "transitions": [
+            {
+              "order": "a",
+              "value": "restaurantOrderCreateForSelfStep",
+              "condition": "<% flowVariables.restaurantOrderType == 'me' %>"
+            },
+            {
+              "order": "b",
+              "value": "restaurantOrderCreateForWorkerStep",
+              "condition": "true"
+            }
+          ],
+          "startsFlow": true,
+          "taskId": "restaurantOrderCreate"
+        },
+        {
+          "id": "restaurantOrderCreateForSelfStep",
+          "endsFlow": true,
+          "taskId": "restaurantOrderCreateForSelf"
+        },
+        {
+          "id": "restaurantOrderCreateForWorkerStep",
+          "endsFlow": true,
+          "taskId": "restaurantOrderCreateForWorker"
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "home",
+      "routingPattern": "/",
+      "page": {
+        "id": "home"
+      }
+    },
+    {
+      "id": "restaurantCreate",
+      "routingPattern": "/restaurantCreate",
+      "page": {
+        "id": "restaurantCreate"
+      }
+    },
+    {
+      "id": "restaurantView",
+      "routingPattern": "/restaurantView",
+      "page": {
+        "id": "restaurantView"
+      }
+    },
+    {
+      "id": "restaurantEdit",
+      "routingPattern": "/restaurantEdit",
+      "page": {
+        "id": "restaurantEdit"
+      }
+    },
+    {
+      "id": "restaurantManage",
+      "routingPattern": "/restaurantManage",
+      "page": {
+        "id": "restaurantManage"
+      }
+    },
+    {
+      "id": "restaurantDelete",
+      "routingPattern": "/restaurantDelete",
+      "page": {
+        "id": "restaurantDelete"
+      }
+    },
+    {
+      "id": "restaurantOrderCreate",
+      "routingPattern": "/restaurantOrderCreate",
+      "page": {
+        "id": "restaurantOrderCreate"
+      }
+    },
+    {
+      "id": "restaurantOrderManage",
+      "routingPattern": "/restaurantOrderManage",
+      "page": {
+        "id": "restaurantOrderManage"
+      }
+    },
+    {
+      "id": "testScripts",
+      "routingPattern": "/testScripts",
+      "page": {
+        "id": "testScripts"
+      }
+    },
+    {
+      "id": "authError",
+      "routingPattern": "/authError",
+      "page": {
+        "id": "authError"
+      }
+    },
+    {
+      "id": "badRequestError",
+      "routingPattern": "/badRequestError",
+      "page": {
+        "id": "badRequestError"
+      }
+    },
+    {
+      "id": "notFoundError",
+      "routingPattern": "/notFoundError",
+      "page": {
+        "id": "notFoundError"
+      }
+    },
+    {
+      "id": "internalServerError",
+      "routingPattern": "/internalServerError",
+      "page": {
+        "id": "internalServerError"
+      }
+    },
+    {
+      "id": "serviceUnavailableError",
+      "routingPattern": "/serviceUnavailableError",
+      "page": {
+        "id": "serviceUnavailableError"
+      }
+    },
+    {
+      "id": "restaurantOrderCreateForWorker",
+      "routingPattern": "/restaurantOrderCreateForWorker",
+      "page": {
+        "id": "restaurantOrderCreateForWorker"
+      }
+    },
+    {
+      "id": "restaurantOrderCreateForSelf",
+      "routingPattern": "/restaurantOrderCreateForSelf",
+      "page": {
+        "id": "restaurantOrderCreateForSelf"
+      }
+    },
+    {
+      "id": "restaurantCreateSuccess",
+      "routingPattern": "/restaurantCreateSuccess",
+      "page": {
+        "id": "restaurantCreateSuccess"
+      }
+    },
+    {
+      "id": "restaurantCreateConfirm",
+      "routingPattern": "/restaurantCreateConfirm",
+      "page": {
+        "id": "restaurantCreateConfirm"
+      }
+    },
+    {
+      "id": "restaurantOfTheMonth",
+      "routingPattern": "/restaurantOfTheMonth",
+      "page": {
+        "id": "restaurantOfTheMonth"
+      }
+    }
+  ],
+  "applicationId": "mealOrderGuruS08762_zrclrm",
+  "dataProviders": [
+    {
+      "key": "COMMON",
+      "value": "https://api.us.wcp.workday.com/common/v1"
+    },
+    {
+      "key": "BUSINESS-OBJECT",
+      "value": "<% `https://api.workday.com/apps/{{site.applicationId}}/v1` %>"
+    },
+    {
+      "key": "WQL",
+      "value": "https://api.us.wcp.workday.com/wql/v1"
+    }
+  ]
+}

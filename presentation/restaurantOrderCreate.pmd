@@ -1,0 +1,48 @@
+{
+  "id": "restaurantOrderCreate",
+  "endPoints": [ ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "name": "restaurantOrderVars",
+        "type": "outboundVariable",
+        "variableScope": "flow",
+        "values": [
+          {
+            "outboundPath": "restaurantOrderType",
+            "value": "<% thisOrderIsForWidget.value[0] %>"
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Create an Order"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "radioGroup",
+          "id": "thisOrderIsForWidget",
+          "label": "This order is for",
+          "required": true,
+          "instanceList": [
+            {
+              "id": "me",
+              "descriptor": "Me"
+            },
+            {
+              "id": "someoneElse",
+              "descriptor": "Someone Else"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

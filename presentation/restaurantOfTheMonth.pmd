@@ -1,0 +1,39 @@
+{
+  "id": "restaurantOfTheMonth",
+  "endPoints": [
+    {
+      "name": "getRestaurant",
+      "baseUrlType": "BUSINESS-OBJECT",
+      "url": "<% `/restaurants/{{attrstore.restaurantOfTheMonthWID}}` %>",
+      "authType": "sso"
+    }
+  ],
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "Restaurant of the Month"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "id": "restaurantOfTheMonthWidget",
+          "label": "<% getRestaurant.name %>",
+          "value": "<% attrstore.restaurantOfTheMonthDescription %>"
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

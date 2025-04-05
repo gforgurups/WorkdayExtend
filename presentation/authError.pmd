@@ -1,0 +1,24 @@
+{
+  "id": "authError",
+  "endPoints": [ ],
+  "presentation": {
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "id": "errorSummary",
+          "label": "Error Message",
+          "value": "We couldn't verify your identity, or your login session expired. Try again."
+        },
+        {
+          "type": "text",
+          "id": "errorDetails",
+          "label": "HTTP Error code: <% errorCode %>",
+          "value": "<% errorMessage %>"
+        }
+      ]
+    }
+  }
+}

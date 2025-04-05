@@ -1,0 +1,41 @@
+{
+  "id": 1,
+  "name": "RestaurantOrderReport",
+  "businessObject": "RestaurantOrder",
+  "defaultSecurityDomains": [
+    "MealOrder"
+  ],
+  "sortConfigs": [],
+  "columns": [
+    {
+      "id": 1,
+      "field": "orderDetails",
+      "name": "Order Details",
+      "order": "a"
+    },
+    {
+      "id": 2,
+      "field": "orderAddress",
+      "name": "Order Address",
+      "order": "b"
+    },
+    {
+      "id": 3,
+      "field": "deliveryDate",
+      "name": "Delivery Date",
+      "order": "c"
+    },
+    {
+      "id": 4,
+      "field": "restaurant",
+      "name": "Restaurant",
+      "order": "d"
+    },
+    {
+      "id": 5,
+      "field": "createdBy",
+      "name": "Created By",
+      "order": "e"
+    }
+  ]
+}

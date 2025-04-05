@@ -1,0 +1,62 @@
+{
+  "id": "restaurantCreateConfirm",
+  "endPoints": [ ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "name": "postRestaurant",
+        "baseUrlType": "BUSINESS-OBJECT",
+        "url": "/restaurants",
+        "authType": "sso",
+        "httpMethod": "POST",
+        "onSend": "<%
+          {
+            'name': flowVariables.restaurantName,
+            'type': flowVariables.restaurantType,
+            'active': flowVariables.restaurantActive
+          }
+        %>"
+      }
+    ]
+  },
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "Please confirm the values entered below"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "label": "Name",
+          "enabled": false,
+          "value": "<% flowVariables.restaurantName %>"
+        },
+        {
+          "type": "text",
+          "label": "Type",
+          "enabled": false,
+          "value": "<% flowVariables.restaurantType %>"
+        },
+        {
+          "type": "text",
+          "label": "Active",
+          "enabled": false,
+          "value": "<% flowVariables.restaurantActive %>"
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

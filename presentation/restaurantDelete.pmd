@@ -1,0 +1,34 @@
+{
+  "id": "restaurantDelete",
+  "endPoints": [ ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "name": "deleteRestaurant",
+        "baseUrlType": "BUSINESS-OBJECT",
+        "url": "<% `/restaurants/{{queryParams.restaurantId}}` %>",
+        "httpMethod": "DELETE",
+        "authType": "sso"
+      }
+    ]
+  },
+  "presentation": {
+    "micro": true,
+    "title": {
+      "type": "title",
+      "_label": "Are you sure you want to delete this restaurant?",
+      "label": "<% `Are you sure you want to delete this restaurant {{queryParams.restaurantName}}?` %>"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "value": "<% queryParams.restaurantName %>",
+          "enabled": false
+        }
+      ]
+    }
+  }
+}

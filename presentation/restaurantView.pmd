@@ -1,0 +1,57 @@
+{
+  "id": "restaurantView",
+  "endPoints": [
+    {
+      "name": "getRestaurant",
+      "baseUrlType": "BUSINESS-OBJECT",
+      "url": "<% `/restaurants/{{queryParams.restaurantId}}` %>",
+      "authType": "sso"
+    }
+  ],
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "<% getRestaurant.name %>"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "text",
+          "label": "Name",
+          "value": "<% getRestaurant.name %>"
+        },
+        {
+          "type": "text",
+          "label": "Type",
+          "value": "<% getRestaurant.type %>"
+        },
+        {
+          "type": "checkBox",
+          "label": "Active",
+          "value": "<% getRestaurant.active %>",
+          "falseLabel": "No",
+          "trueLabel": "Yes"
+        },
+        {
+          "type": "button",
+          "label": "Home",
+          "taskReference": {
+            "taskId": "home"
+          }
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

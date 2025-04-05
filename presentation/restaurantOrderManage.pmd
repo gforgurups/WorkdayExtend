@@ -1,0 +1,97 @@
+{
+  "id": "restaurantOrderManage",
+  "endPoints": [
+    {
+      "name": "getRestaurantOrders",
+      "baseUrlType": "WQL",
+      "url": "<% 
+        const dataSource = `{{site.applicationId}}_restaurantOrders`;
+        const queryString = 'SELECT createdBy, orderDetails, orderAddress, deliveryDate, restaurant{name, workdayID} FROM ' + dataSource;
+        const url = `/data?query={{string:pathEncode(queryString)}}`;
+        return url;
+      %>",
+      "authType": "sso",
+      "isCollection": true
+    }
+  ],
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "All Orders"
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "grid",
+          "rows": "<% list:sort(getRestaurantOrders.data, 'restaurant.name', true) %>",
+          "rowVariableName": "restaurantOrder",
+          "columns": [
+            {
+              "type": "column",
+              "columnId": "createdByCol",
+              "label": "Name",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% restaurantOrder.createdBy.descriptor %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "orderDetailsCol",
+              "label": "Order Details",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% restaurantOrder.orderDetails %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "orderAddressCol",
+              "label": "Order Address",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% restaurantOrder.orderAddress %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "deliveryDateCol",
+              "label": "Delivery Date",
+              "cellTemplate": {
+                "type": "date",
+                "value": "<% restaurantOrder.deliveryDate %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "restaurantCol",
+              "label": "Restaurant",
+              "cellTemplate": {
+                "type": "instanceList",
+                "view": false,
+                "instanceList": [
+                  {
+                    "descriptor": "<% restaurantOrder.restaurant.name %>",
+                    "wid": "<% restaurantOrder.restaurant.workdayID %>"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "footer",
+      "children": [
+        {
+          "type": "richText",
+          "enabled": "false",
+          "value": "Powered By Workday Extend"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "podId": "restaurantOrder",
+  "seed": {
+    "parameters": [
+      "restaurantsList"
+    ],
+    "template": {
+      "type": "section",
+      "children": [
+        {
+          "type": "instanceList",
+          "label": "Restaurants",
+          "id": "restaurantsWidget",
+          "values": "<%
+            @@restaurantsList@@.data
+              .filter(restaurant => restaurant.active == true)
+              .map(restaurant => {
+                {
+                  'id': restaurant.id,
+                  'descriptor': `{{restaurant.name}} ({{restaurant.type}})`
+                }
+              })
+          %>",
+          "selectedValues": "<%[attrstore.restaurantOfTheMonthWID] %>",
+          "view": "true",
+          "relatedTask": "true"
+        },
+        {
+          "type": "textArea",
+          "label": "Order Details",
+          "id": "orderDetailsWidget",
+          "onChange": "<%
+            if (customValidations.isOverMaxChar(self.value)) {
+              self.setError('Order cannot exceed 100 characters.');
+            } else {
+              self.clearError();
+            }
+          %>"
+        },
+        {
+          "type": "textArea",
+          "label": "Order Address",
+          "id": "orderAddressWidget"
+        },
+        {
+          "type": "date",
+          "label": "Delivery Date",
+          "id": "deliveryDateWidget",
+          "onChange": "<%
+            if (!customValidations.isWeekday(self.value)) {
+              self.setError('Delivery date must be a weekday.');
+            } else {
+              self.clearError();
+            }
+          %>",
+          "datePrecision": "DAY"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "name": "GurusMealOrder",
+  "label": "Gurus MealOrder",
+  "securityDomains": [
+    "MealOrder"
+  ],
+  "routePath": "/"
+}
